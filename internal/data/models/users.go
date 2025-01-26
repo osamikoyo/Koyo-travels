@@ -2,6 +2,9 @@ package models
 
 import "time"
 
+type TokenResponse struct {
+	Token string
+}
 type User struct {
 	ID uint `gorm:"primaryKey"`
 	Username string
