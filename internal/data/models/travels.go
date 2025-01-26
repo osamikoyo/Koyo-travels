@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type Dotes struct{
 	Title string
 	Description string
@@ -24,7 +26,15 @@ type Excurs struct{
 	Title string
 }
 
+type Review struct {
+	Username string
+	Content string
+	CreatedAt time.Time
+}
+
 type Travel struct {
+	ID string
+	CreatedAd time.Time
 	Hotel Hotel
 	Excurs []Excurs
 	Description string
