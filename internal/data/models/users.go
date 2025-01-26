@@ -8,3 +8,8 @@ type User struct {
 	Password string
 	CreatedAt time.Time
 }
+
+type LoginUser struct {
+	Username string
+	Password string
+}
