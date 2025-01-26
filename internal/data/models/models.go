@@ -25,6 +25,7 @@ type Excurs struct{
 }
 
 type Travel struct {
+	Hotel Hotel
 	Excurs []Excurs
 	Description string
 }
