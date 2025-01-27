@@ -31,5 +31,17 @@ func (t *TravelService) UpdateHotel(r *http.Request) error {
 }
 
 func (t *TravelService) AddExcurs(r *http.Request) error {
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil{
+		return err
+	}
+
+	title := r.FormValue("title")
+
+	var excurs models.Excurs
+	if err := json.Unmarshal(body, &excurs);err != nil{
+		return err
+	}
 	
+	return t.Data.TravelExcursAdd(title, excurs)
 }

@@ -46,3 +46,36 @@ func (s Storage) TravelExcursAdd(title string, excurs models.Excurs) error {
 	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
 	return err
 }
+
+func (s Storage) TravelDeleteExcurs(title string, excurs models.Excurs) error {
+	filter := bson.M{
+		"title" : title,
+	}
+
+	update := bson.M{
+		"$pull" : bson.M{
+			"excurs" : bson.M{
+				"title" : excurs.Title,
+			},
+		},
+	}
+
+	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
+	return err
+}
+
+func (s Storage) UpdateExcurs(travel_title string, excurs models.Excurs) error {
+	filter := bson.M{
+		"title" : travel_title,
+		"excurs.title" : excurs.Title,
+	}
+
+	update := bson.M{
+		"$set" : bson.M{
+			"excurs.$" : excurs,
+		},
+	}
+
+	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
+	return err
+}
