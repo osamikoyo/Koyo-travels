@@ -33,7 +33,7 @@ type Review struct {
 }
 
 type Travel struct {
-	ID string
+	Title string
 	CreatedAd time.Time
 	Hotel Hotel
 	Excurs []Excurs

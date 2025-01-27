@@ -79,3 +79,4 @@ func (s Storage) UpdateExcurs(travel_title string, excurs models.Excurs) error {
 	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
 	return err
 }
+
