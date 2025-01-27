@@ -31,3 +31,18 @@ func (s Storage) TravelUpdate(value interface{},key string, title string) error 
 	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
 	return err
 }
+
+func (s Storage) TravelExcursAdd(title string, excurs models.Excurs) error {
+	filter := bson.M{
+		"title" : title,
+	}
+
+	update := bson.M{
+		"$push": bson.M{
+			"excurs" : excurs,
+		},
+	}
+
+	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
+	return err
+}
