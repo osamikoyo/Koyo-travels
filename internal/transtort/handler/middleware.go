@@ -8,6 +8,27 @@ import (
 
 type HandlerFunc func (w http.ResponseWriter, r *http.Request) error
 
+
+func Post(h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			http.Error(w, "wrong method", http.StatusBadRequest)
+			return
+		}
+		h.ServeHTTP(w, r)
+	}
+}
+
+func Get(h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			http.Error(w, "wrong method", http.StatusBadRequest)
+			return
+		}
+		h.ServeHTTP(w, r)
+	}
+}
+
 func (h Handler) AuthMW(handlerFunc http.HandlerFunc) http.HandlerFunc{
 	return func(w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("Authorization")

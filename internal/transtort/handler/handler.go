@@ -12,6 +12,7 @@ type Handler struct {
 }
 
 func (h Handler) GetRoutes(mux *http.ServeMux){
-	mux.Handle("/register", h.REAL(h.registerHandler))
+	mux.Handle("/register", Post(h.REAL(h.registerHandler)))
+	mux.Handle("/login", Post(h.REAL(h.loginHandler)))
 }
 
