@@ -40,4 +40,6 @@ type Travel struct {
 	Reviews []Review
 	Excurs []Excurs
 	Description string
+	Country string
+	Hours string
 }

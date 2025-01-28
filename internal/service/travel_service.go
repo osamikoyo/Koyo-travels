@@ -14,6 +14,8 @@ type TravelService struct {
 	Loger loger.Logger
 }
 
+func (t *TravelService) AddTravel()
+
 func (t *TravelService) UpdateHotel(r *http.Request) error {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil{
