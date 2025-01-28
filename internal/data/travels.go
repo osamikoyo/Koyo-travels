@@ -5,6 +5,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+func (s *Storage) TravelAdd(travel models.Travel) error {
+	_, err := s.Mongo.Collection.InsertOne(s.Mongo.ctx, travel)
+	return err
+}
+
 func (s *Storage) TravelGet(title string) (models.Travel, error) {
 	var travels models.Travel
 
