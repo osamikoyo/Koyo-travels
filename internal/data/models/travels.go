@@ -29,6 +29,7 @@ type Excurs struct{
 type Review struct {
 	Username string
 	Content string
+	Count uint8
 	CreatedAt time.Time
 }
 
@@ -36,6 +37,7 @@ type Travel struct {
 	Title string
 	CreatedAd time.Time
 	Hotel Hotel
+	Reviews []Review
 	Excurs []Excurs
 	Description string
 }
