@@ -42,4 +42,5 @@ type Travel struct {
 	Description string
 	Country string
 	Hours string
+	Mark float32
 }

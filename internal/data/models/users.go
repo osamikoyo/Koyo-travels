@@ -10,6 +10,7 @@ type User struct {
 	Username string
 	Password string
 	CreatedAt time.Time
+	Rait float32
 }
 
 type LoginUser struct {

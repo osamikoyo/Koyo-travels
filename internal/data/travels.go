@@ -10,6 +10,25 @@ func (s *Storage) TravelAdd(travel models.Travel) error {
 	return err
 }
 
+func (s *Storage) TravelUpdateMark(newMark float32, title string) (float32, error) {
+	travel, err := s.TravelGet(title)
+	if err != nil{
+		return 0.0, err
+	}
+
+	counter := 0
+	for _, r := range travel.Reviews {
+		counter =+ int(r.Count)
+	}
+
+	counter =+ int(newMark)
+
+	result := float32(counter/(len(travel.Reviews)+1))
+
+	err = s.TravelUpdate(result, "mark", title)
+	return result, err
+}
+
 func (s *Storage) TravelGet(title string) (models.Travel, error) {
 	var travels models.Travel
 
