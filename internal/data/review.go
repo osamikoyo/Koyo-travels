@@ -10,12 +10,17 @@ func (s *Storage) ReviewAdd(title string, review models.Review) error {
 		"title" : title,
 	}
 
+	err := s.TravelUpdateMark(float32(review.Count), title)
+	if err != nil{
+		return err
+	}
+
 	update := bson.M{
 		"$push": bson.M{
 			"reviews" : review,
 		},
 	}
-	_, err := s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
+	_, err = s.Mongo.Collection.UpdateOne(s.Mongo.ctx, filter, update)
 	return err
 }
 
