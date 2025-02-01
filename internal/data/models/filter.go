@@ -14,4 +14,5 @@ type HotelFilter struct {
 type Filter struct {
 	Country        string
 	MoreThanItRait float32
+	HotelFilter HotelFilter
 }
