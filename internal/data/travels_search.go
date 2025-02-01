@@ -68,3 +68,18 @@ func (s Storage) Search(title string) ([]Match, error) {
 	sort.Sort(ByCount(sortTravels))
 	return sortTravels, nil
 }
+
+func (s *Storage) SearchByFilter(filter models.Filter) ([]models.Travel, error) {
+	var travels []models.Travel
+
+	cursor, err := s.Mongo.Collection.Find(s.Mongo.ctx, bson.M{
+		"country" : filter.Country,
+	})
+	if err != nil{
+		return nil, err
+	}
+	 err = cursor.Decode(&filter)
+
+
+	 return travels, err
+}
