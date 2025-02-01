@@ -79,7 +79,22 @@ func (s *Storage) SearchByFilter(filter models.Filter) ([]models.Travel, error) 
 		return nil, err
 	}
 	 err = cursor.Decode(&filter)
+	 if err != nil{
+		 return nil, err
+	}
 
+	newtravels := make([]models.Travel, len(travels))
+
+	for i, t := range travels{
+		count, err := s.CalculateMarks(t.Title)
+		if err != nil{
+			return nil, err
+		}
+
+		if count > filter.MoreThanItRait {
+			newtravels[i] = t
+		}
+	}
 
 	 return travels, err
 }
